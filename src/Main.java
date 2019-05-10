@@ -35,6 +35,10 @@ public class Main {
 				 votação = metodos.gravarVotos(votação);
 				 break;
 				 
+			 case 9:
+				 JOptionPane.showMessageDialog(null,"vc saiu do sistema");
+				 break;
+				 
 			 case 4:
 				 while (num != 9) {
 					 num = Integer.parseInt(JOptionPane.showInputDialog("1- Quantidade Eleitores por Seção \n2- Seção com Maior e Menor número de Eleitores "
@@ -63,11 +67,6 @@ public class Main {
 						 break;
 					 }
 				 }
-			 
-			 case 9:
-				 JOptionPane.showMessageDialog(null,"vc saiu do sistema");
-				 break;
-				 
 			 }
 		 }
 	}
