@@ -22,7 +22,7 @@ public class Metodos {
 				if (vetor[i].numeroSessao > vetor[j].numeroSessao) {
 					aux = vetor[i].numeroSessao;
 					vetor[i].numeroSessao = vetor[j].numeroSessao;
-					vetor[j].numeroSessao = vetor[i].numeroSessao;
+					vetor[j].numeroSessao = aux;
 				}
 			}
 		}
@@ -113,29 +113,35 @@ public class Metodos {
 	}
 
 	public void procDezPrimeiros(ClasseVotaçao[] vetor) {
-		int i, j, aux = 0;
+		int i, j, aux = 0, aux2;
 		int V[] = new int[300];
+		int M[][] = new int [2][300];
 		String msg = " ";
 
 		for (i = 0; i < 50; i++) {
 			V[vetor[i].numeroCandidato]++;
 		}
+		
+		for(i = 0; i < 300; i++) {
+			M[0][i]= i;
+			M[1][i] = V[i];
+		}
 
-		for (i = 0; i < 49; i++) {
-			for (j = i + 1; j < 50; j++) {
-				if (V[i] < V[j]) {
-					aux = V[i];
-					V[i] = V[j];
-					V[j] = aux;
+		for (i = 0; i < 299; i++) {
+			for (j = i + 1; j < 300; j++) {
+				if (M[1][i] < M[1][j]) {
+					aux2 = M[1][i];
+					M[1][i] = M[1][j];
+					M[1][j] = aux2;
+					aux = M[0][i];
+					M[0][i] = M[0][j];
+					M[0][j] = aux;
 				}
 			}
 		}
 
 		for (i = 0; i < 10; i++) {
-			if(V[i] == vetor[i].numeroCandidato) {
-				msg += "os 10 primeiros canditados são : " + " o canditado " + vetor[i].numeroCandidato +  " com " + V[i] + " votos " + "\n";	
-			}
-			
+			msg += "os 10 primeiros canditados são : " + " o canditado " + M[0][i] +  " com " + M[1][i] + " votos " + "\n";
 		}
 
 		JOptionPane.showMessageDialog(null, msg);
